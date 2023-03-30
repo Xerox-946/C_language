@@ -1,0 +1,22 @@
+CC=gcc
+BIN=all
+OBJ=main.o mail.o tools.o
+FLAG=-Wall -Werror
+STD=-std=gnu99
+LINK=-lm
+
+all:$(OBJ)
+	$(CC) -o $(BIN) $(OBJ)
+
+main.o:main.c mail.h tools.h 
+	$(CC) -c main.c
+
+mail.o:mail.c mail.h tools.h
+	$(CC) -c mail.c 
+
+tools.o:tools.c tools.h
+	$(CC) -c tools.c
+clean:
+	rm $(BIN) $(OBJ)
+%.o:%.c
+	$(CC) $(STD) $(FLAG) -c $< -o $@
